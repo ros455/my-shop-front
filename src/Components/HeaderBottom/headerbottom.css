@@ -1,0 +1,41 @@
+.header-bottom-form {
+    display: flex;
+    width: 40%;
+}
+
+.sig-in-wrapper {
+    display: flex;
+    align-items:center;
+    text-align: center;
+    width: 20%;
+    justify-content: space-around;
+}
+
+.sig-in-wrapper p{
+    margin-bottom: 0px;
+    color:white;
+}
+
+.sig-in-icon {
+    width: 28px;
+    height: 28px;
+    color:white;
+}
+.header-bottom-dropdown {
+    color:white;
+}
+
+@media(max-width: 992px) {
+    .sig-in-wrapper {
+        display: none;
+    } 
+    .header-bottom-form {
+        width: 70%;
+    }
+    .header-bottom-dropdown {
+        width: 30%;
+    }
+    .sig-in-bottom-wrapper {
+        display: none;
+    }
+  }

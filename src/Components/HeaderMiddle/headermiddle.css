@@ -1,0 +1,39 @@
+.header-middle-wrapper {
+    display: flex;
+    justify-content: space-around;
+    max-height: 100px;
+}
+.header-middle-logotype {
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px black;
+    text-align: center;
+    width: 10%;
+}
+
+.header-middle-text {
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 50%;
+}
+
+.middle-basket {
+    display: block;
+}
+
+@media(max-width: 992px) {
+    .header-middle-text {
+        display: none;
+    }
+
+    .header-middle-logotype {
+        width: 100%;
+    }
+
+    .middle-basket {
+        display: none;
+    }
+
+}

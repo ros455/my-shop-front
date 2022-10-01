@@ -1,0 +1,24 @@
+.header-basket {
+    width: 28px;
+    height: 28px;
+}
+
+.header-middle-basket-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.header-top-basket-wrapper {
+    display: none;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+@media(max-width: 992px) {
+    .header-top-basket-wrapper {
+        display: flex;
+    } 
+}
