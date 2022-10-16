@@ -1,35 +1,77 @@
 import React from 'react'
 import { Modal, Form, Button } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsAuth, fetchAuth } from '../../store/auth';
+import {useForm} from 'react-hook-form';
 export default function Login({handleShowLogin,handleCloseLogin}) {
+
+  const isAuth = useSelector(selectIsAuth);
+  
+  const dispatch = useDispatch();
+
+  const {register, handleSubmit, formState: {errors, isValid}} = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    mode: 'onBlur'
+  })
+
+  const onSubmit = async (values) => {
+    const data = await dispatch(fetchAuth(values));
+
+    console.log('data',data.payload)
+
+    if(!data.payload) {
+      return alert("Не удалось авторизоваться")
+    }
+
+    if('token' in data.payload) {
+      console.log('set token')
+      window.localStorage.setItem('token', data.payload.token)
+    }
+  }
+
   return (
     <Modal show={handleShowLogin} onHide={handleCloseLogin}>
       <Modal.Header closeButton>
         <Modal.Title>Вхід</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Email address</Form.Label>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Емайл</Form.Label>
             <Form.Control
               type="email"
-              placeholder="name@example.com"
+              placeholder="name@email.com"
               autoFocus
-            />
+              {...register("email", 
+              { required: true,
+                 })}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows={3} />
+
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Пароль</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Пароль"
+              autoFocus
+              {...register("password", 
+              { required: true,
+                minLength: {
+                  value: 3,
+                }})}/>
           </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleCloseLogin}>
-          Close
+          <Modal.Footer>
+      <Button variant="secondary" onClick={handleCloseLogin}>
+          Вийти
         </Button>
-        <Button variant="primary" onClick={handleCloseLogin}>
-          Save Changes
+        <Button type='submit' variant="primary" onClick={handleCloseLogin}>
+          Увійти
         </Button>
       </Modal.Footer>
+        </Form>
+      </Modal.Body>
     </Modal>
   )
 }

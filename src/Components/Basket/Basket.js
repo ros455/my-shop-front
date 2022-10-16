@@ -1,33 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BsFillBasket3Fill } from "react-icons/bs";
 import { Nav } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { selectCart } from "../../store/cart";
 import basket from './basket.css'
+import TotalCarSum from "../TotalCarSum/TotalCarSum";
 export default function Basket() {
+  const cart = useSelector(selectCart);
 
-    const [width,setWidth] = React.useState(window.outerWidth);
+  const cartLength = cart.length;
 
-    function handleResize() {
-      setWidth(window.outerWidth)
-    }
-  
-    React.useEffect(() => {
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-  
-  
-    console.log('width',width)
-    if (width >= 992) {
-      return(
-        <Nav className='header-middle-basket-wrapper'>
-            <BsFillBasket3Fill className='header-basket'/>
-         </Nav>
-      )
-    } else if (width < 992) {
-      return (
-        <Nav className='header-top-basket-wrapper'>
-            <BsFillBasket3Fill className='header-basket'/>
-         </Nav>
-      )
-    }
+  console.log("cartLength", cartLength);
+
+  return (
+    <div className="basket-wrapper">
+      <TotalCarSum />
+      <Nav className="header-middle-basket-wrapper">
+        <Link to="cart">
+          <BsFillBasket3Fill className="header-basket" />
+        </Link>
+        <Link className="header-cart-link-length" to="cart">
+          <p className="header-cart-length">{cartLength}</p>
+        </Link>
+      </Nav>
+    </div>
+  );
 }

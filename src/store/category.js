@@ -7,6 +7,12 @@ export const fetchCategory = createAsyncThunk('get-all-categories/fetchCategory'
     return data
 })
 
+export const fetchRemoveCategory = createAsyncThunk('category/fetchRemoveCategory', async(id) => {
+
+    axios.delete(`/remove-categories/${id}`);
+})
+
+
 const categorySlice = createSlice({
     name: 'category',
     initialState: {
@@ -27,6 +33,9 @@ const categorySlice = createSlice({
         [fetchCategory.rejected]: (state) => {
             state.category.items = [];
             state.category.status = 'error';
+        },
+        [fetchRemoveCategory.pending]: (state, action) => {
+            state.category.items = state.category.items.filter(obj => obj._id !== action.meta.arg)
         },
     }
 })

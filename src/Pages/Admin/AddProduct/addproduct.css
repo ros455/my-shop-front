@@ -1,0 +1,34 @@
+.add-product-wrapper {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-product-image-wrapper {
+    max-width: 200px;
+    max-height: 300px;
+    margin: 50px 0px;
+    overflow: hidden;
+}
+.add-product-image-wrapper img {
+    width: 100%;
+}
+
+.add-product-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 50px 0px;
+}
+
+.add-product-form-wrapper div {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-product-form-perametr {
+    display: block !important;
+}

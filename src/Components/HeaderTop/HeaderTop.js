@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar,Container,Nav,NavDropdown, Button } from 'react-bootstrap';
 import {AiFillFacebook} from 'react-icons/ai'
 import {AiFillInstagram} from 'react-icons/ai'
@@ -17,19 +18,19 @@ export default function HearedTop () {
         </Nav>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Про нас</Nav.Link>
-            <Nav.Link href="#link">Оплата та доставка</Nav.Link>
-            <Nav.Link href="#link">Обмін та повернення</Nav.Link>
-            <Nav.Link href="#link">Контакти</Nav.Link>
+            <Link to="about-us">Про нас</Link>
+            <Link to="pay-and-delivery">Оплата та доставка</Link>
+            <Link to="exchange-and-return">Обмін та повернення</Link>
+            <Link to="contacts">Контакти</Link>
           </Nav>
           <Nav className='social-wrapper'>
-          <Nav.Link href="#home">
+          <Nav.Link href="https://uk-ua.facebook.com/">
             <AiFillFacebook className='social'/>
           </Nav.Link>
-          <Nav.Link href="#home">
+          <Nav.Link href="https://www.instagram.com/">
             <AiFillInstagram className='social'/>
           </Nav.Link>
-          <Nav.Link href="#home">
+          <Nav.Link href="https://twitter.com/">
             <AiFillTwitterSquare className='social'/>
           </Nav.Link>
           </Nav>

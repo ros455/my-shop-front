@@ -1,0 +1,12 @@
+.pagination-wrapper {
+    display: flex;
+  }
+  .pagination-number-wrapper {
+    margin: 0px 20px;
+  }
+  
+  .pagination-number-wrapper p {
+    border: 1px solid black;
+    padding: 1px 7px;
+    cursor: pointer;
+  }

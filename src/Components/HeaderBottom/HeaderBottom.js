@@ -4,25 +4,39 @@ import {BsPersonFill} from 'react-icons/bs';
 import headerbottom from './headerbottom.css';
 import {useDispatch, useSelector} from 'react-redux';
 import { fetchCategory } from '../../store/category.js';
+import { currentCategory,allCategory, searchProduct } from '../../store/product';
+import { selectProductOnPage, setCurrentPage, selectCurrentPage } from '../../store/productOnPage';
 import SigIn from '../SigIn/SigIn';
 export default function HeaderBottom() {
 
-  const category = useSelector((state) => state.category.category.items);
-
   const dispatch = useDispatch();
+
+  const category = useSelector((state) => state.category.category.items);
 
   React.useEffect(() => {
     dispatch(fetchCategory())
   },[])
 
-  console.log('category:',category)
+  const changeCategory = (el) => {
+    dispatch(currentCategory(el))
+  }
+
+  const changeAllCategory = () => {
+    dispatch(allCategory())
+  }
+
+  const search = (e) => {
+    dispatch(searchProduct(e))
+    dispatch(setCurrentPage(1))
+  }
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container fluid>
             <NavDropdown title="Категорії" id="navbarScrollingDropdown" className='header-bottom-dropdown'>
+            <NavDropdown.Item href="#action3" onClick={changeAllCategory}>Всі</NavDropdown.Item>
               {category && category.map((el) => (
-                <NavDropdown.Item href="#action3" key={el._id}>{el.category}</NavDropdown.Item>
+                <NavDropdown.Item href="#action3" key={el._id} value={el.category} onClick={() => changeCategory(el.category)}>{el.category}</NavDropdown.Item>
               ))}
             </NavDropdown>
 
@@ -32,8 +46,8 @@ export default function HeaderBottom() {
               placeholder="Пошук"
               className="me-2"
               aria-label="Search"
+              onChange={(e) => search(e.target.value)}
             />
-            <Button variant="outline-primary">Знайти</Button>
           </Form>
           <div className='sig-in-bottom-wrapper'>
           <SigIn/>

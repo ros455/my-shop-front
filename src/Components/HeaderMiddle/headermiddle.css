@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-around;
     max-height: 100px;
+    align-items:center;
 }
 .header-middle-logotype {
     font-weight: 700;
@@ -21,6 +22,17 @@
 
 .middle-basket {
     display: block;
+    width: 10%;
+}
+
+.header-middle-sort-wrapper {
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.header-middle-sort-wrapper p {
+    margin-bottom: 0px;
 }
 
 @media(max-width: 992px) {
